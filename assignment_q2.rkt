@@ -1,5 +1,12 @@
 #lang racket
 
+(provide ins_beg)
+(provide ins_end)
+(provide cout_top_level)
+(provide count_instances)
+(provide count_instances_tr)
+(provide count_instances_deep)
+
 [define (ins_beg num list)
   (append (cons num empty) list)
 ]
@@ -34,12 +41,3 @@
     [(list? (car list)) (+ (count_instances_deep num (car list)) (count_instances_deep num (cdr list)))]
     [else (count_instances num (cdr list))])
 ]
-
-(printf "Q2 A.(a): ~a\n" (ins_beg 'a '(b c d)))
-(printf "Q2 A.(b): ~a\n" (ins_beg '(a b) '(b c d)))
-(printf "Q2 B.(a): ~a\n" (ins_end 'a '(b c d)))
-(printf "Q2 B.(b): ~a\n" (ins_end '(a b) '(b c d)))
-(printf "Q2 C.: ans(4)=~a\n" (cout_top_level '(a b c d)))
-(printf "Q2 D.: ans(2)=~a\n" (count_instances 'z '(p i z z a)))
-(printf "Q2 E.: ans(2)=~a\n" (count_instances_tr 'z '(p i z z a) 0))
-(printf "Q2 F.: ans(4)=~a\n" (count_instances_deep 'd '((a n d r o i d s) (d o n t) (d r e a m))))
